@@ -1,42 +1,83 @@
 package com.addressbook.model;
-public class Person{
-
-	private String name;
-	private String email;
-	private String city;
-	long mobileno;
-	int zip;
-
-	public void setname(String name){
-		this.name = name;
-	}
-	public void setemail(String email){
-		this.email = email;
-	}
-	public void setcity(String city){
-		this.city = city;
-	}
-	public void setmobileno(long mobileno){
-		this.mobileno = mobileno;
-	}
-	public void setzip(int zip){
-		this.zip = zip;
-	}
+//import com.addressbook.model.Address;
 
 
-	public String getname(){
-		return this.name;
-	}
-	public String getemail(){
-		return this.email;
-	}
-	public String getcity(){
-		return this.city;
-	}
-	public long getmobileno(){
-		return this.mobileno;
-	}
-	public int getzip(){
-		return this.zip;
-	}
+import java.lang.Comparable;
+import java.io.Serializable;
+
+public class Person implements Comparable<Person>,Serializable
+{
+        private static final long serialVersionUID = 1L;
+        String firstName;
+        String lastName;
+        Address address;
+        String phoneNumber;
+                Person(){}
+                Person(String firstName, String lastName,Address address, String phoneNumber)
+                {
+                        this.firstName = firstName;
+                        this.lastName = lastName;
+                        this.address = address;
+                        this.phoneNumber = phoneNumber;
+                }
+
+                public String getFirstName()
+                {
+                        return this.firstName;
+                }
+
+                public void setFirstName( String firstName)
+                {
+                         this.firstName = firstName;
+                }
+
+                public String getLastName()
+                {
+                        return this.lastName;
+                }
+
+                public void setLastName( String lastName)
+               {
+                         this.lastName = lastName;
+               }
+
+                public Address getAddress()
+                {
+                        return this.address;
+                }
+
+
+                public void setAddress(Address address)
+                {
+                        this.address = address;
+                }
+
+                public String getPhoneNumber()
+                {
+                        return this.phoneNumber;
+                }
+		public void setPhoneNumber(String phoneNumber)
+                {
+                        this.phoneNumber = phoneNumber;
+
+                }
+
+                public String toString()
+                {
+                        return this.firstName +" "+ this.lastName +"\n"+ this.phoneNumber +"\n"+ this.address.toString();
+                }
+
+                public int compareTo(Person person)
+                {
+                        if(this.address.getZip() > person.address.getZip())
+                        {
+                                return 1;
+                        }
+                        if(this.address.getZip() < person.address.getZip())
+                        {
+                                return -1;
+                        }
+                        return 0;
+
+                }
 }
